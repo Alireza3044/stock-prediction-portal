@@ -3,14 +3,12 @@ from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
 class RegisterSerializer(serializers.ModelSerializer):
-    password2 = serializers.CharField(write_only=True, style={"input_type": "password"})
+    password = serializers.CharField(write_only=True, style={"input_type": "password"}, min_length=8)
+    password2 = serializers.CharField(write_only=True, style={"input_type": "password"}, min_length=8)
 
     class Meta:
         model = User
         fields = ["username", "email", "password", "password2"]
-        extra_kwargs = {
-            "password": {"write_only": True}
-        }
 
     def save(self):
         u = self.validated_data["username"]
