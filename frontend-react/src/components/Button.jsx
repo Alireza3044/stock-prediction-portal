@@ -1,8 +1,10 @@
-function Button({ children, className }) {
+import { Link } from "react-router-dom"
+
+function Button({ children, className, url }) {
   return (
-    <a className={"btn " + className}>
+    <Link className={"btn " + className} to={url}>
       {children}
-    </a>
+    </Link>
   )
 }
 
