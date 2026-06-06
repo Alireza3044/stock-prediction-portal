@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from rest_framework.authtoken.models import Token
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, style={"input_type": "password"}, min_length=8)
@@ -22,6 +21,4 @@ class RegisterSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Passwords do not match.")
         
         user = User.objects.create_user(username=u, email=e, password=p)
-        Token.objects.create(user=user)
-
         return user
