@@ -18,21 +18,23 @@ function Register() {
     setUserData(data => ({ ...data, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = async (e) => {
+  async function handleRegister(e) {
     e.preventDefault()
 
-    const url = "http://127.0.0.1:8000/auth/register/"
+    const url = "http://127.0.0.1:8000/api/auth/register/"
+    setIsLoading(true)
+  
     try {
-      setIsLoading(true)
       setErrors({})
       const response = await axios.post(url, userData)
-      console.log(response.data)
       setIsSuccess(true)
-    } catch (error) {
+    }
+    catch (error) {
       setErrors(error.response.data)
-      console.error("Registration error:" + error.response.data)
       setIsSuccess(false)
-    } finally {
+      console.error(error.response.data)
+    }
+    finally {
       setIsLoading(false)
     }
   }
@@ -42,7 +44,7 @@ function Register() {
       <div className="row justify-content-center">
         <div className="col-md-6 bg-light-dark p-5 rounded">
           <h3 className="text-light text-center mb-4">Create an Account</h3>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleRegister}>
             <div className="mb-3">
               <input
                 type="text"
