@@ -20,7 +20,11 @@ function Header() {
         <Link className="navbar-brand text-light" to="/">Stock Prediction Portal</Link>
 
         {isLoggedIn ? (
-          <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+          <div>
+            <Button className="btn-info" url="dashboard/">Dashboard</Button>
+            &nbsp;
+            <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+          </div>
         ) : (
           <div>
             <Button className="btn-outline-info" url="login/">Login</Button>

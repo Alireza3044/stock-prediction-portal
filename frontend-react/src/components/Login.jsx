@@ -32,7 +32,7 @@ function Login() {
       localStorage.setItem("accessToken", response.data.access)
       localStorage.setItem("refreshToken", response.data.access)
       setIsLoggedIn(true)
-      navigate("/")
+      navigate("dashboard/")
     }
     catch (err) {
       setError(err.response.data.detail)

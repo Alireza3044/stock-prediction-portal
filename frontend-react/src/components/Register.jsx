@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
@@ -13,6 +14,7 @@ function Register() {
   const [errors, setErrors] = useState({})
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setUserData(data => ({ ...data, [e.target.name]: e.target.value }))
@@ -23,11 +25,12 @@ function Register() {
 
     const url = "http://127.0.0.1:8000/api/auth/register/"
     setIsLoading(true)
-  
+
     try {
       setErrors({})
       const response = await axios.post(url, userData)
       setIsSuccess(true)
+      navigate("login/")
     }
     catch (error) {
       setErrors(error.response.data)
