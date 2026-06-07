@@ -1,9 +1,9 @@
 import { useContext, useState } from "react"
-import axios from "axios"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { AuthContext } from "../Contexts"
 import { useNavigate } from "react-router-dom"
+import axiosInstance from "../axiosInstance"
 
 function Login() {
   const [userData, setUserData] = useState({
@@ -22,17 +22,15 @@ function Login() {
 
   async function handleLogin(e) {
     e.preventDefault()
-    const url = "http://127.0.0.1:8000/api/auth/token/"
-
     try {
       setError("")
       setIsLoading(true)
-      const response = await axios.post(url, userData)
+      const response = await axiosInstance.post("auth/token/", userData)
       
       localStorage.setItem("accessToken", response.data.access)
       localStorage.setItem("refreshToken", response.data.access)
       setIsLoggedIn(true)
-      navigate("dashboard/")
+      navigate("/dashboard")
     }
     catch (err) {
       setError(err.response.data.detail)

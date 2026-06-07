@@ -21,15 +21,15 @@ function Header() {
 
         {isLoggedIn ? (
           <div>
-            <Button className="btn-info" url="dashboard/">Dashboard</Button>
+            <Button className="btn-info" url="/dashboard">Dashboard</Button>
             &nbsp;
             <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
           </div>
         ) : (
           <div>
-            <Button className="btn-outline-info" url="login/">Login</Button>
+            <Button className="btn-outline-info" url="/login">Login</Button>
             &nbsp;
-            <Button className="btn-info" url="register/">Register</Button>
+            <Button className="btn-info" url="/register">Register</Button>
           </div>
         )}
       </nav>

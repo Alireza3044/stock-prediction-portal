@@ -11,7 +11,7 @@ function Main() {
           prices by analyzing 100-day and 200-day moving averages, essential indicators widely used by
           stock analysts to inform trading and investment decisions.
         </p>
-        <Button className="btn-outline-info" url="dashboard/">Explore Now</Button>
+        <Button className="btn-outline-info" url="/dashboard">Explore Now</Button>
       </div>
     </main>
   )

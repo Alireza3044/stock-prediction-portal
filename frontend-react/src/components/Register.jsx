@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
+import axiosInstance from "../axiosInstance"
 
 function Register() {
   const [userData, setUserData] = useState({
@@ -22,15 +22,13 @@ function Register() {
 
   async function handleRegister(e) {
     e.preventDefault()
-
-    const url = "http://127.0.0.1:8000/api/auth/register/"
     setIsLoading(true)
 
     try {
       setErrors({})
-      const response = await axios.post(url, userData)
+      const response = await axiosInstance.post("auth/register/", userData)
       setIsSuccess(true)
-      navigate("login/")
+      navigate("/login")
     }
     catch (error) {
       setErrors(error.response.data)

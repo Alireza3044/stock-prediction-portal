@@ -7,6 +7,8 @@ import Register from "./components/Register"
 import Login from "./components/Login"
 import AuthProvider from "./Contexts"
 import Dashboard from "./components/Dashboard"
+import PrivateRoute from "./PrivateRoute"
+import PublicRoute from "./PublicRoute"
 
 function App() {
   return (
@@ -15,9 +17,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="register/" element={<Register />} />
-          <Route path="login/" element={<Login />} />
-          <Route path="dashboard/" element={<Dashboard />} />
+          <Route path="register" element={<PublicRoute><Register /></PublicRoute>} />
+          <Route path="login" element={<PublicRoute><Login /></PublicRoute>} />
+          <Route path="dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         </Routes>
         <Footer />
       </BrowserRouter>
