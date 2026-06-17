@@ -28,7 +28,7 @@ function Login() {
       const response = await axiosInstance.post("auth/token/", userData)
       
       localStorage.setItem("accessToken", response.data.access)
-      localStorage.setItem("refreshToken", response.data.access)
+      localStorage.setItem("refreshToken", response.data.refresh)
       setIsLoggedIn(true)
       navigate("/dashboard")
     }
