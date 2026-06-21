@@ -2,6 +2,10 @@ import axios from "axios";
 
 const baseURL = import.meta.env.VITE_BACKEND_BASE_URL
 
+function redirectToLogin() {
+  window.dispatchEvent(new CustomEvent("refresh-token-expired"))
+}
+
 const axiosInstance = axios.create({
   baseURL: baseURL,
   headers: {
@@ -35,8 +39,8 @@ axiosInstance.interceptors.response.use(
   }, async (error) => {
     const originalConfig = error.config
     
-    if (error.response?.status === 401 && !originalConfig._retry) {
-      originalConfig._retry = true
+    if (error.response?.status === 401 && !originalConfig.retry) {
+      originalConfig.retry = true
       
       const refreshToken = localStorage.getItem("refreshToken")
 
@@ -57,12 +61,9 @@ axiosInstance.interceptors.response.use(
       }
       // Otherwise the refreshToken is invalid and user needs to sign in
       catch (error) {
-        // TODO: Gets stuck in a loop of requests if
-        //       doesn't redirect by external components
         localStorage.removeItem("accessToken")
         localStorage.removeItem("refreshToken")
-        window.location.href = "/login"
-        return Promise.reject(error)
+        redirectToLogin()
       }
     }
     return Promise.reject(error)
