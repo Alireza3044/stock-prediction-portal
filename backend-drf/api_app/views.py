@@ -1,10 +1,16 @@
-from rest_framework.generics import RetrieveAPIView
+from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from .serializers import PredictSerializer
 
 
-class SampleView(RetrieveAPIView):
+class PredictView(CreateAPIView):
     permission_classes = [IsAuthenticated]
-
-    def retrieve(self, request):
-        return Response("Fetched the sample auth-required view.")
+    serializer_class = PredictSerializer
+    
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        ticker = serializer.validated_data["ticker"]
+        
+        return Response({"response": "You've passed: " + ticker})
