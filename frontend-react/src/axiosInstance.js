@@ -60,7 +60,7 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalConfig)
       }
       // Otherwise the refreshToken is invalid and user needs to sign in
-      catch (error) {
+      catch {
         localStorage.removeItem("accessToken")
         localStorage.removeItem("refreshToken")
         redirectToLogin()
