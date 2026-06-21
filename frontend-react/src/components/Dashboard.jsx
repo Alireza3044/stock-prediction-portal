@@ -1,28 +1,33 @@
-import { useEffect } from "react"
+import { useState } from "react"
 import axiosInstance from "../axiosInstance"
 
 function Dashboard() {
-  const accessToken = localStorage.getItem("accessToken")
+  const [ticker, setTicker] = useState("")
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosInstance.get("v1/sample/", {
-          headers: {
-            "Authorization": `Bearer ${accessToken}`
-          }
-        })
-        console.log(response.data)
-      }
-      catch(error) {
-        console.error(error)
-      }
-    }
-    fetchData()
-  }, [])
+  async function getPrediction(e) {
+    e.preventDefault()
+
+    const response = await axiosInstance.post("v1/predict/", { ticker })
+    console.log(response)
+  }
 
   return (
-    <h1 className="text-light">Dashboard Component</h1>
+    <main className="container">
+      <div className="row">
+        <div className="col-md-6 mx-auto">
+          <form onSubmit={getPrediction}>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter the ticker"
+              value={ticker}
+              onChange={e => setTicker(e.target.value)}
+            />
+            <button className="btn btn-info mt-3" type="submit">See Prediction</button>
+          </form>
+        </div>
+      </div>
+    </main>
   )
 }
 
