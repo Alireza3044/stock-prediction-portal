@@ -26,7 +26,7 @@ function Register() {
 
     try {
       setErrors({})
-      const response = await axiosInstance.post("auth/register/", userData)
+      await axiosInstance.post("auth/register/", userData)
       setIsSuccess(true)
       navigate("/login")
     }

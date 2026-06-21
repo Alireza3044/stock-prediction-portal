@@ -1,4 +1,5 @@
 import { Routes, Route, useNavigate } from "react-router-dom"
+import { useContext, useEffect } from "react"
 import "./assets/css/app.css"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
@@ -9,7 +10,6 @@ import { AuthContext } from "./Contexts"
 import Dashboard from "./components/Dashboard"
 import PrivateRoute from "./PrivateRoute"
 import PublicRoute from "./PublicRoute"
-import { useContext, useEffect } from "react"
 
 function App() {
   const { setIsLoggedIn } = useContext(AuthContext)
