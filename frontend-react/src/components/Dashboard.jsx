@@ -1,14 +1,30 @@
 import { useState } from "react"
 import axiosInstance from "../axiosInstance"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 
 function Dashboard() {
   const [ticker, setTicker] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
 
   async function getPrediction(e) {
     e.preventDefault()
+    setError("")
+    setIsLoading(true)
 
-    const response = await axiosInstance.post("v1/predict/", { ticker })
-    console.log(response)
+    try {
+      const response = await axiosInstance.post("v1/predict/", { ticker })
+      console.log(response.data)
+      
+      if (response.data.error) {
+        setError(response.data.error)
+      }
+    } catch (err) {
+      console.error("There was an error with the API request", err)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -23,7 +39,15 @@ function Dashboard() {
               value={ticker}
               onChange={e => setTicker(e.target.value)}
             />
-            <button className="btn btn-info mt-3" type="submit">See Prediction</button>
+            {error && <small className="text-danger d-block">{error}</small>}
+            <button className="btn btn-info mt-3" type="submit" disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <FontAwesomeIcon icon={faSpinner} spin={true} />
+                  <span>Please Wait</span>
+                </>
+              ) : <span>See Prediction</span>}
+            </button>
           </form>
         </div>
       </div>

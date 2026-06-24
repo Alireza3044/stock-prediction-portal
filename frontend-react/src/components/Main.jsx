@@ -1,6 +1,10 @@
 import Button from "./Button"
+import { useContext } from "react"
+import { AuthContext } from "./../Contexts"
 
 function Main() {
+  const { isLoggedIn } = useContext(AuthContext)
+
   return (
     <main className="container">
       <div className="p-4 text-center bg-light-dark rounded">
@@ -11,7 +15,9 @@ function Main() {
           prices by analyzing 100-day and 200-day moving averages, essential indicators widely used by
           stock analysts to inform trading and investment decisions.
         </p>
-        <Button className="btn-outline-info" url="/dashboard">Explore Now</Button>
+        <Button className="btn-outline-info" url="/dashboard">
+          {isLoggedIn ? "Explore Now" : "Login Now"}
+        </Button>
       </div>
     </main>
   )

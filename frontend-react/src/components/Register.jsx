@@ -103,8 +103,12 @@ function Register() {
             </div>
             {isSuccess && <div className="alert alert-success">Registration Was Successful.</div>}
             <button type="submit" className="btn btn-info d-block mx-auto mt-4" disabled={isLoading}>
-              {isLoading && <FontAwesomeIcon icon={faSpinner} spin={true} />}
-              {isLoading ? "Please Wait" : "Register"}
+              {isLoading ? (
+                <>
+                  <FontAwesomeIcon icon={faSpinner} spin={true} />
+                  <span>Please Wait</span>
+                </>
+              ) : <span>Register</span>}
             </button>
           </form>
         </div>

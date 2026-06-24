@@ -13,7 +13,7 @@ function Login() {
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
-  const {setIsLoggedIn} = useContext(AuthContext)
+  const { setIsLoggedIn } = useContext(AuthContext)
   const navigate = useNavigate()
 
   function handleChange(e) {
@@ -26,7 +26,7 @@ function Login() {
       setError("")
       setIsLoading(true)
       const response = await axiosInstance.post("auth/token/", userData)
-      
+
       localStorage.setItem("accessToken", response.data.access)
       localStorage.setItem("refreshToken", response.data.refresh)
       setIsLoggedIn(true)
@@ -71,8 +71,12 @@ function Login() {
             </div>
 
             <button type="submit" className="btn btn-info d-block mx-auto mt-4" disabled={isLoading}>
-              {isLoading && <FontAwesomeIcon icon={faSpinner} spin={true} />}
-              {isLoading ? "Logging In..." : "Login"}
+              {isLoading ? (
+                <>
+                  <FontAwesomeIcon icon={faSpinner} spin={true} />
+                  <span>Logging In</span>
+                </>
+              ) : <span>Login</span>}
             </button>
           </form>
         </div>
