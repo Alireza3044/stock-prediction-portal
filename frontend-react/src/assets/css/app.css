@@ -15,3 +15,8 @@ body {
 .container {
   flex: 1;
 }
+
+.plot-image {
+  padding: 3rem;
+  max-width: 100%;
+}
