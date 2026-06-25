@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_BACKEND_BASE_URL
+const baseURL = import.meta.env.VITE_BACKEND_API_URL
 
 function redirectToLogin() {
   window.dispatchEvent(new CustomEvent("refresh-token-expired"))
@@ -38,25 +38,20 @@ axiosInstance.interceptors.response.use(
     return response
   }, async (error) => {
     const originalConfig = error.config
-    
+
     if (error.response?.status === 401 && !originalConfig.retry) {
       originalConfig.retry = true
-      
-      const refreshToken = localStorage.getItem("refreshToken")
 
-      if (!refreshToken) {
-        localStorage.removeItem("accessToken")
-        localStorage.removeItem("refreshToken")
-        return Promise.reject(error)
-      }
-      
+      const refreshToken = localStorage.getItem("refreshToken")
+      !refreshToken && redirectToLogin()
+
       // Refresh the accessToken by the refreshToken
       try {
         const response = await refreshInstance.post("auth/token/refresh/", { refresh: refreshToken })
-        
+
         localStorage.setItem("accessToken", response.data.access)
         originalConfig.headers.Authorization = `Bearer ${response.data.access}`
-        
+
         return axiosInstance(originalConfig)
       }
       // Otherwise the refreshToken is invalid and user needs to sign in
