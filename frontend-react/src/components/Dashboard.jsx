@@ -21,7 +21,7 @@ function Dashboard() {
     setBasePlot("")
 
     try {
-      const response = await axiosInstance.post("v1/predict/", { ticker })
+      const response = await axiosInstance.post("predict/", { ticker })
 
       if (response.data.error) {
         setError(response.data.error)
