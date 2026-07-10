@@ -52,6 +52,7 @@ def evaluate(data, model_path):
     data = pd.DataFrame(data)
     index = floor(len(data) * 0.7)
 
+    # Add the last 100 days of train data to test data
     test_data = data.iloc[index-100:]
     
     scaler = MinMaxScaler(feature_range=(0, 1))
@@ -68,7 +69,7 @@ def evaluate(data, model_path):
     model = load_model(model_path)
     y_pred = model.predict(x_test)
 
-    # Get original data
+    # Get original data back
     y_test = scaler.inverse_transform(y_test.reshape(-1, 1))
     y_pred = scaler.inverse_transform(y_pred.reshape(-1, 1))
 

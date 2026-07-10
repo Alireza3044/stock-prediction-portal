@@ -13,7 +13,6 @@ class PredictView(CreateAPIView):
     def create(self, request):
         serializer = self.serializer_class(evaluations=request.data)
         serializer.is_valid(raise_exception=True)
-        
         ticker = serializer.validated_data["ticker"]
 
         try:
