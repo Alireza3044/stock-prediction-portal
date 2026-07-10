@@ -32,7 +32,6 @@ def plot_and_get_image_path(ticker, data, colors, plot_labels):
     plt.switch_backend('AGG')
     plt.figure(figsize=(12, 6))
     for d, color, label in zip(data, colors, plot_labels):
-        print(d, color, label)
         plt.plot(d, color, label=label)
     plt.xlabel("Day")
     plt.ylabel("Price")
