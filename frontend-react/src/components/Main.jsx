@@ -1,4 +1,4 @@
-import Button from "./Button"
+import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { AuthContext } from "./../Contexts"
 
@@ -15,9 +15,9 @@ function Main() {
           prices by analyzing 100-day and 200-day moving averages, essential indicators widely used by
           stock analysts to inform trading and investment decisions.
         </p>
-        <Button className="btn-outline-info" url="/dashboard">
+        <Link className="btn btn-outline-info" to="/dashboard">
           {isLoggedIn ? "Explore Now" : "Login Now"}
-        </Button>
+        </Link>
       </div>
     </main>
   )

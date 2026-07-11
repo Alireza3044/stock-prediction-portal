@@ -11,7 +11,7 @@ class PredictView(CreateAPIView):
     serializer_class = serializers.PredictSerializer
     
     def create(self, request):
-        serializer = self.serializer_class(evaluations=request.data)
+        serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         ticker = serializer.validated_data["ticker"]
 

@@ -1,6 +1,5 @@
 import { useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import Button from "./Button"
 import { AuthContext } from "../Contexts"
 
 function Header() {
@@ -21,15 +20,15 @@ function Header() {
 
         {isLoggedIn ? (
           <div>
-            <Button className="btn-info" url="/dashboard">Dashboard</Button>
+            <Link className="btn btn-info" to="/dashboard">Dashboard</Link>
             &nbsp;
             <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
           </div>
         ) : (
           <div>
-            <Button className="btn-outline-info" url="/login">Login</Button>
+            <Link className="btn btn-outline-info" to="/login">Login</Link>
             &nbsp;
-            <Button className="btn-info" url="/register">Register</Button>
+            <Link className="btn btn-info" to="/register">Register</Link>
           </div>
         )}
       </nav>

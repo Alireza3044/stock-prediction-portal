@@ -25,7 +25,7 @@ axiosInstance.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem("accessToken")
     if (accessToken) {
-      config.headers["Authorization"] = `Bearer ${accessToken}`
+      config.headers.Authorization = `Bearer ${accessToken}`
     }
     return config
   }, (error) => {
@@ -39,8 +39,8 @@ axiosInstance.interceptors.response.use(
   }, async (error) => {
     const originalConfig = error.config
 
-    if (error.response?.status === 401 && !originalConfig.retry) {
-      originalConfig.retry = true
+    if (error.response?.status === 401 && !originalConfig._retry) {
+      originalConfig._retry = true
 
       const refreshToken = localStorage.getItem("refreshToken")
       !refreshToken && redirectToLogin()
