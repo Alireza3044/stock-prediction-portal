@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router"
 import { useContext } from "react"
-import { AuthContext } from "./../Contexts"
+import { AuthContext } from "../Contexts"
 
-function Main() {
+function Index() {
   const { isLoggedIn } = useContext(AuthContext)
 
   return (
@@ -23,4 +23,4 @@ function Main() {
   )
 }
 
-export default Main
+export default Index

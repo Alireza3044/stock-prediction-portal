@@ -1,15 +1,15 @@
-import { Routes, Route, useNavigate } from "react-router-dom"
+import { Routes, Route, useNavigate } from "react-router"
 import { useContext, useEffect } from "react"
 import "./assets/css/app.css"
-import Footer from "./components/Footer"
-import Header from "./components/Header"
-import Main from "./components/Main"
+import { AuthContext } from "./Contexts"
+import Index from "./components/Index"
 import Register from "./components/Register"
 import Login from "./components/Login"
-import { AuthContext } from "./Contexts"
 import Dashboard from "./components/Dashboard"
 import PrivateRoute from "./PrivateRoute"
 import PublicRoute from "./PublicRoute"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
 
 function App() {
   const { setIsLoggedIn } = useContext(AuthContext)
@@ -31,10 +31,14 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="register" element={<PublicRoute><Register /></PublicRoute>} />
-        <Route path="login" element={<PublicRoute><Login /></PublicRoute>} />
-        <Route path="dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route index element={<Index />} />
+        <Route element={<PublicRoute />}>
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route path="dashboard" element={<Dashboard />} />
+        </Route>
       </Routes>
       <Footer />
     </>

@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { AuthContext } from "../Contexts"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router"
 import axiosInstance from "../axiosInstance"
 
 function Login() {
