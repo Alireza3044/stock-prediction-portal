@@ -14,7 +14,7 @@ Also needs to be mentioned that this project is inspired by Udemy's <a href="htt
 
 2. Install the requirements.py for backend and ML:
 
-    `pip install requirements.txt`
+    `pip install -r requirements.txt`
 
 3. Move to the `backend-drf` directory and create a `.env` file. Inside the file you should provide two keys: `DEBUG` and `SECRET_KEY`. `DEBUG` should be `False` if the project is on deployment, otherwise `True`. For generating a secure secret key you could use an online tool or from `django.core.management.utils` import `get_random_secret_key` and run the function and put the result in `.env` file
 
