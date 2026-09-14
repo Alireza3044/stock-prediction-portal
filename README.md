@@ -1,26 +1,126 @@
-# About the project
+# Stock Prediction Portal
 
-This project is a full-stack portal for predicting stock prices using the <a href="finance.yahoo.com">Yahoo Finance</a>'s stocks data.
+A full-stack financial analytics web application that fetches historical market data from Yahoo Finance and leverages a deep learning LSTM (Long Short-Term Memory) neural network to predict future stock prices.
 
-The portal involves React and React Router as frontend library and router, whilst the backend's requests are handled by a Django and it's REST framework (DRF). Moreover the prediction is done by a LSTM model, which is prepared & trained in Python by using Numpy, Pandas, and Tensorflow/Keras, and Matplotlib for visualization.
+*Inspired by the [Full Stack Machine Learning Course](https://www.udemy.com/course/full-stack-machine-learning-django-rest-framework-react/) on Udemy.*
 
-Also needs to be mentioned that this project is inspired by Udemy's <a href="https://www.udemy.com/course/full-stack-machine-learning-django-rest-framework-react/">Full Stack Machine Learning Course</a> Project.
+---
 
-# Getting Started
+## Features
 
-1. Clone the repository to your machine by command:
+* **Deep Learning Predictions:** Time-series stock price forecasting powered by a trained TensorFlow/Keras LSTM model.
+* **JWT Authentication:** Secure user registration, token-based login, and automated session renewal via SimpleJWT and custom Axios event listeners.
+* **Multi-Plot Market Analytics:** Generates comprehensive visual analytics including 10-year historical stock trends, 100-day & 200-day Moving Averages (MA), and model predictions overlaid on historical price trends.
+* **Protected Client Routing:** Client-side route protection (`PrivateRoute` / `PublicRoute`) powered by React Router and React Context.
+* **Modern UI Architecture:** Clean component design built with React 19, Vite, FontAwesome icons, and custom CSS styling.
 
-    `git clone https://github.com/Alireza3044/stock-prediction-portal.git`
+---
 
-2. Install the requirements.py for backend and ML:
+## Tech Stack
 
-    ```bash
-    cd backend
-    pip install -r requirements.txt
-    ```
+* **Frontend:** React 19, React Router v7, Axios, FontAwesome, Vite
+* **Backend:** Django, Django REST Framework (DRF)
+* **Authentication:** SimpleJWT (JSON Web Tokens)
+* **Machine Learning & Data Science:** TensorFlow / Keras (LSTM), NumPy, Pandas, Matplotlib
+* **Data Provider:** Yahoo Finance (`yfinance`)
 
-3. Move to the `backend` directory and create a `.env` file. Inside the file you should provide two keys: `DEBUG` and `SECRET_KEY`. `DEBUG` should be `False` if the project is on deployment, otherwise `True`. For generating a secure secret key you could use an online tool or from `django.core.management.utils` import `get_random_secret_key` and run the function and put the result in `.env` file.
+---
 
-4. Move to `frontend` directory and run `npm i` to install the required packages by npm. Then you need to create a `.env` file and provide the `VITE_BACKEND_ROOT_URL` and `VITE_BACKEND_API_URL` variables.
+## Client Application Routes
 
-5. Now you can run the frontend server by `npm run dev` and run the backend server by moving to `backend` directory and running `python manage.py runserver`.
+| Path | Route Type | Description |
+| :--- | :---: | :--- |
+| `/` | Public | Landing page with project overview |
+| `/login` | Public Only | User login page (redirects if authenticated) |
+| `/register` | Public Only | User registration page (redirects if authenticated) |
+| `/dashboard` | Protected | Interactive stock prediction dashboard & analytics |
+
+---
+
+## API Endpoints Reference
+
+### Authentication (JWT)
+
+| Endpoint | Method | Description |
+| :--- | :---: | :--- |
+| `/api/v1/auth/register/` | `POST` | Register a new user account |
+| `/api/v1/auth/token/` | `POST` | Authenticate credentials and receive JWT Access/Refresh tokens |
+| `/api/v1/auth/token/refresh/` | `POST` | Refresh an expired JWT access token |
+
+### Stock Predictions & Analytics
+
+| Endpoint | Method | Description |
+| :--- | :---: | :--- |
+| `/api/v1/predict/` | `POST` | Accepts stock symbol payload and returns 10-year historical plots, 100/200-day Moving Averages, and LSTM prediction overlay plots |
+
+---
+
+## Getting Started
+
+### Prerequisites
+* **Node.js** (v20+) & **npm**
+* **Python** 3.12+
+* **Git**
+
+### Installation & Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/Alireza3044/stock-prediction-portal.git](https://github.com/Alireza3044/stock-prediction-portal.git)
+   cd stock-prediction-portal
+   ```
+
+2. **Backend Setup:**
+   ```bash
+   cd backend
+   pip install -r requirements.txt
+   ```
+   Create a `.env` file inside the `backend/` directory:
+   ```env
+   SECRET_KEY=your-secret-key
+   DEBUG=True
+
+   # Optional Database Settings
+   DB_NAME=your_db_name
+   DB_USER=your_db_user
+   DB_PASSWORD=your_db_password
+   DB_HOST=localhost
+   DB_PORT=5432
+   ```
+   > **Note:** To generate a secure `SECRET_KEY`, run:
+   > `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"`
+
+   Apply database migrations:
+   ```bash
+   python manage.py migrate
+   ```
+
+3. **Frontend Setup:**
+   Open a new terminal tab and navigate to the `frontend/` directory:
+   ```bash
+   cd frontend
+   npm install
+   ```
+   Create a `.env` file inside the `frontend/` directory:
+   ```env
+   VITE_BACKEND_ROOT_URL=http://localhost:8000
+   VITE_BACKEND_API_URL=http://localhost:8000/api/v1
+   ```
+
+---
+
+## Running the Application
+
+To run the full-stack portal locally, start both development servers:
+
+1. **Start the Backend Server:**
+   ```bash
+   cd backend
+   python manage.py runserver
+   ```
+
+2. **Start the Frontend Development Server:**
+   ```bash
+   cd frontend
+   npm run dev
+   ```
