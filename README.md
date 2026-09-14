@@ -66,7 +66,7 @@ A full-stack financial analytics web application that fetches historical market 
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/Alireza3044/stock-prediction-portal.git](https://github.com/Alireza3044/stock-prediction-portal.git)
+   git clone https://github.com/Alireza3044/stock-prediction-portal.git
    cd stock-prediction-portal
    ```
 
@@ -79,13 +79,6 @@ A full-stack financial analytics web application that fetches historical market 
    ```env
    SECRET_KEY=your-secret-key
    DEBUG=True
-
-   # Optional Database Settings
-   DB_NAME=your_db_name
-   DB_USER=your_db_user
-   DB_PASSWORD=your_db_password
-   DB_HOST=localhost
-   DB_PORT=5432
    ```
    > **Note:** To generate a secure `SECRET_KEY`, run:
    > `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"`
@@ -103,8 +96,8 @@ A full-stack financial analytics web application that fetches historical market 
    ```
    Create a `.env` file inside the `frontend/` directory:
    ```env
-   VITE_BACKEND_ROOT_URL=http://localhost:8000
-   VITE_BACKEND_API_URL=http://localhost:8000/api/v1
+   VITE_BACKEND_ROOT_URL=http://localhost:8000/
+   VITE_BACKEND_API_URL=http://localhost:8000/api/v1/
    ```
 
 ---
