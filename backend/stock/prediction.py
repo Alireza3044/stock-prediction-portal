@@ -2,12 +2,17 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import yfinance as yf
+import seaborn as sns
+import math
+
 from datetime import datetime
 from django.conf import settings
 from keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, r2_score
-from math import floor
+
+sns.set_theme(palette="muted")
+
 
 def get_stock_price_data(ticker: str) -> pd.DataFrame:
     now = datetime.now()
@@ -50,7 +55,7 @@ def plot_and_get_image_path(ticker, data, colors, plot_labels):
 def evaluate(data, model_path):
     # Data preprocessing
     data = pd.DataFrame(data)
-    index = floor(len(data) * 0.7)
+    index = math.floor(len(data) * 0.7)
 
     # Add the last 100 days of train data to test data
     test_data = data.iloc[index-100:]
