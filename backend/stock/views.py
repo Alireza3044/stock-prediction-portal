@@ -24,7 +24,7 @@ class PredictView(CreateAPIView):
         base_plot_path = prediction.plot_and_get_image_path(ticker, [price_data.Close], ["b"], ["Price"])
         ma_plot_path = prediction.plot_and_get_image_path(ticker, [price_data.Close, price_data.ma100, price_data.ma200], ["b", "r", "g"], ["Price", "MA 100", "MA 200"])
 
-        evaluations = prediction.evaluate(price_data.Close, "api_app/stock-perdictor.keras")
+        evaluations = prediction.evaluate(price_data.Close, "stock/stock-perdictor.keras")
         pred_plot_path = prediction.plot_and_get_image_path(ticker, [evaluations["y_test"], evaluations["y_pred"]], ["b", "r"], ["Real Price", "Predicted Price"])
 
         return Response({
