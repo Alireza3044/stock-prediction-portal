@@ -32,7 +32,7 @@ A full-stack financial analytics web application that fetches historical market 
 * **JWT Authentication:** Secure user registration, token-based login, and automated session renewal via SimpleJWT and custom Axios event listeners.
 * **Multi-Plot Market Analytics:** Generates comprehensive visual analytics including 10-year historical stock trends, 100-day & 200-day Moving Averages (MA), and model predictions overlaid on historical price trends.
 * **Protected Client Routing:** Client-side route protection (`PrivateRoute` / `PublicRoute`) powered by React Router and React Context.
-* **Modern UI Architecture:** Clean component design built with React 19, Vite, FontAwesome icons, and custom CSS styling.
+* **Modern UI Components:** Fully responsive interface built with React 19, Vite, FontAwesome icons, and custom styling.
 
 ---
 
