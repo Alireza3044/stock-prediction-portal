@@ -78,7 +78,7 @@ A full-stack financial analytics web application that fetches historical market 
 ## Getting Started
 
 ### Prerequisites
-* **Node.js** (v20.19.0+) & **npm**
+* **Node.js** (v20.19+) & **npm**
 * **Python** 3.12+
 * **Git**
 
@@ -106,6 +106,11 @@ A full-stack financial analytics web application that fetches historical market 
    Apply database migrations:
    ```bash
    python manage.py migrate
+   ```
+
+   Create an empty `media` folder in root directory:
+   ```bash
+   mkdir media
    ```
 
 3. **Frontend Setup:**
