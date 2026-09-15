@@ -6,6 +6,26 @@ A full-stack financial analytics web application that fetches historical market 
 
 ---
 
+## Project Overview
+
+<p align="center">
+   <img src="assets/1.png" width="48%" title="Homepage">
+   <img src="assets/2.png" width="48%" title="Pagination">
+</p>
+<p align="center">
+   <img src="assets/3.png" width="48%" title="Non-empty Shopping Cart">
+   <img src="assets/4.png" width="48%" title="Ordering Page">
+</p>
+<p align="center">
+   <img src="assets/5.png" width="48%" title="Ordering Successful">
+   <img src="assets/6.png" width="48%" title="Empty Shopping Cart">
+</p>
+<p align="center">
+   <img src="assets/7.png" width="96%" title="Empty Shopping Cart">
+</p>
+
+---
+
 ## Features
 
 * **Deep Learning Predictions:** Time-series stock price forecasting powered by a trained TensorFlow/Keras LSTM model.
