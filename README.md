@@ -58,7 +58,7 @@ A full-stack financial analytics web application that fetches historical market 
 ## Getting Started
 
 ### Prerequisites
-* **Node.js** (v20+) & **npm**
+* **Node.js** (v20.19.0+) & **npm**
 * **Python** 3.12+
 * **Git**
 
